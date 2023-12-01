@@ -188,7 +188,7 @@ describe("Web Tables",()=>{
 })
 
 describe ("Buttons",()=>{
-  it.only ("right click",()=>{
+  it ("right click",()=>{
     Cypress.on('uncaught:exception', (err, runnable) => {
       // returning false here prevents Cypress from
       // failing the test
@@ -196,9 +196,10 @@ describe ("Buttons",()=>{
     })
     cy.get("#item-4").click();
     cy.get("#rightClickBtn").rightclick();
+    cy.get("#rightClickMessage").should("be.visible");
 
   })
-  it.only ("dbl click",()=>{
+  it ("dbl click",()=>{
     Cypress.on('uncaught:exception', (err, runnable) => {
       // returning false here prevents Cypress from
       // failing the test
@@ -206,8 +207,89 @@ describe ("Buttons",()=>{
     })
     cy.get("#item-4").click();
     cy.get("#doubleClickBtn").dblclick();
+    cy.get("#doubleClickMessage").should("be.visible");
+
+
+  })
+  it (" click",()=>{
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+    })
+    cy.get("#item-4").click();
+    cy.get('[type="button"]').last().click();
+    cy.get("#dynamicClickMessage").should("be.visible");
 
   })
 
+
+})
+
+describe("links",()=>{
+  it("created",()=>{
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+    })
+    cy.get("#item-5").click();
+
+    cy.contains("Created").click();
+    cy.get("#linkResponse").should("contain","text Created");
+  })
+  it("no content",()=>{
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+    })
+    cy.get("#item-5").click();
+
+    cy.contains("No Content").click();
+    cy.get("#linkResponse").should("contain","text No Content");
+  })
+
+  it("forbiden",()=>{
+    Cypress.on('uncaught:exception', (err, runnable) => {
+      // returning false here prevents Cypress from
+      // failing the test
+      return false
+    })
+    cy.get("#item-5").click();
+
+    cy.contains("Forbidden").click();
+    cy.get("#linkResponse").should("contain","text Forbidden");
+  })
+})
+it("valid link",()=>{
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  })
+  cy.get("#item-6").click();
+  cy.get('[href="http://demoqa.com"]').trigger('click', { ctrlKey: true });
+  cy.url().should("eql","https://demoqa.com/");
+})
+it("valid link",()=>{
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  })
+  cy.get("#item-7").click();
+  cy.get("#downloadButton").click();
+})
+it.only("dynamic prop",()=>{
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  })
+  cy.get("#item-8").click();
+  cy.wait(5000);
+  cy.get("#enableAfter").should("be.enabled");
+  cy.get("#visibleAfter").should("be.visible");
 
 })
