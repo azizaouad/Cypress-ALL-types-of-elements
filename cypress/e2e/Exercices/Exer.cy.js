@@ -288,8 +288,8 @@ it.only("dynamic prop",()=>{
     return false
   })
   cy.get("#item-8").click();
-  cy.wait(5000);
-  cy.get("#enableAfter").should("be.enabled");
+  // cy.wait(5000);
+  cy.get("#enableAfter", { timeout: 5000 }).should("be.enabled");
   cy.get("#visibleAfter").should("be.visible");
 
 })
