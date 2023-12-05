@@ -42,7 +42,7 @@ it("last Name", () => {
             expect(value).to.eq("test");
         });
 });
-it.only("last Name", () => {
+it("radio button", () => {
     // Désactive la gestion des exceptions non interceptées pour éviter l'échec du test
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false;
@@ -51,3 +51,34 @@ cy.get('#gender-radio-1').click({force: true} )
 
 cy.get('#gender-radio-1').should("be.checked")
 });
+it("check box", () => {
+    // Désactive la gestion des exceptions non interceptées pour éviter l'échec du test
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+cy.get('#hobbies-checkbox-1').click({force: true} )
+
+cy.get('#hobbies-checkbox-1').should("be.checked")
+});
+it("date", () => {
+    // Désactive la gestion des exceptions non interceptées pour éviter l'échec du test
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+cy.get('#dateOfBirthInput').click();
+cy.get('.react-datepicker__month-select').select('April') ;
+cy.get('.react-datepicker__year-select').select('1996') ;
+cy.get(".react-datepicker__day--021").click()
+// cy.log(cy.get('#dateOfBirthInput').invoke('val').toString())
+cy.get('#dateOfBirthInput').invoke('val').should('equal','21 Apr 1996')
+
+
+// cy.get('#hobbies-checkbox-1').should("be.checked")
+});
+it.only("date", () => {
+    // Désactive la gestion des exceptions non interceptées pour éviter l'échec du test
+    Cypress.on('uncaught:exception', (err, runnable) => {
+        return false;
+    });
+    cy.get("//div[@class=' css-yk16xz-control']//div[@class=' css-1wy0on6']").click()
+})
