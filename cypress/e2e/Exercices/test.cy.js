@@ -219,6 +219,19 @@ describe('Dynamic Controls',()=>{
     cy.get('input[type="text"]').invoke('val').should('not.be.empty')
 
   })
+  it('checkbox',()=>{
+    cy.contains('Dynamic Controls').click()
+    cy.get('input[type="checkbox"]').check()
+    cy.get('input[type="checkbox"]').should('be.checked')
+  })
+  it.only('remove',()=>{
+    cy.contains('Dynamic Controls').click()
+    cy.get('button[type="button"]').first().click()
+    cy.wait(5000)
+    cy.get('#message').invoke('text').should('include',"It's gone")
+
+  })
+
 })
 
 
