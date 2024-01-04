@@ -58,31 +58,31 @@ cy.window().then((win) => {
 
 
     })
-    it.only ("new window msg",()=>{
-      Cypress.on('uncaught:exception', (err, runnable) => {
-        // returning false here prevents Cypress from
-        // failing the test
-        return false
-      })
-      cy.contains("Browser Windows").click();
-      cy.get('#messageWindowButton').click();
-      cy.wait(3000)
-      // cy.window().should('have.length', 2); // Si deux fenêtres sont ouvertes
+//     it.only ("new window msg",()=>{
+//       Cypress.on('uncaught:exception', (err, runnable) => {
+//         // returning false here prevents Cypress from
+//         // failing the test
+//         return false
+//       })
+//       cy.contains("Browser Windows").click();
+//       cy.get('#messageWindowButton').click();
+//       cy.wait(3000)
+//       // cy.window().should('have.length', 2); // Si deux fenêtres sont ouvertes
 
-      // Obtenez la liste des fenêtres
-      // cy.window().then((win) => {
-      //   const fenetres = win.parent.frames;
+//       // Obtenez la liste des fenêtres
+//       // cy.window().then((win) => {
+//       //   const fenetres = win.parent.frames;
       
-      //   // Switch vers la deuxième fenêtre (index 1 dans le tableau)
-      //   win.parent.frames[2].focus();
-      // });
-      // cy.get('/html/body').should('contain',"Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.")
-      cy.window().then((win) => {
-        const nouvelleFenetre = win.parent.frames[1];
+//       //   // Switch vers la deuxième fenêtre (index 1 dans le tableau)
+//       //   win.parent.frames[2].focus();
+//       // });
+//       // cy.get('/html/body').should('contain',"Knowledge increases by sharing but not by saving. Please share this website with your friends and in your organization.")
+//       cy.window().then((win) => {
+//         const nouvelleFenetre = win.parent.frames[1];
       
-        // Accédez au corps (body) du document de la nouvelle fenêtre
-        cy.wrap(nouvelleFenetre).its('document.body').should('exist');
-  })
+//         // Accédez au corps (body) du document de la nouvelle fenêtre
+//         cy.wrap(nouvelleFenetre).its('document.body').should('exist');
+//   })
 
-})
+// })
   })

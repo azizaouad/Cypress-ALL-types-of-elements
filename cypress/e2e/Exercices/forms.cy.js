@@ -51,7 +51,7 @@ cy.get('#gender-radio-1').click({force: true} )
 
 cy.get('#gender-radio-1').should("be.checked")
 });
-it("check box", () => {
+it.only("check box", () => {
     // Désactive la gestion des exceptions non interceptées pour éviter l'échec du test
     Cypress.on('uncaught:exception', (err, runnable) => {
         return false;
@@ -75,10 +75,3 @@ cy.get('#dateOfBirthInput').invoke('val').should('equal','21 Apr 1996')
 
 // cy.get('#hobbies-checkbox-1').should("be.checked")
 });
-it.only("date", () => {
-    // Désactive la gestion des exceptions non interceptées pour éviter l'échec du test
-    Cypress.on('uncaught:exception', (err, runnable) => {
-        return false;
-    });
-    cy.get("//div[@class=' css-yk16xz-control']//div[@class=' css-1wy0on6']").click()
-})
